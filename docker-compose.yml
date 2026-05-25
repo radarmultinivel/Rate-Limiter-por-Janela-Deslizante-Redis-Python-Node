@@ -1,0 +1,16 @@
+# Desenvolvido por L. A. Leandro - São José dos Campos - SP - 25/05/2026
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: rate-limiter-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes --loglevel notice
+
+volumes:
+  redis_data:
